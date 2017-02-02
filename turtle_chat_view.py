@@ -1,8 +1,13 @@
 #2016-2017 PERSONAL PROJECTS: TurtleChat!
-#WRITE YOUR NAME HERE!
+#WRITE YOUR NAME HERE! Ben
 
 #####################################################################################
-#                                   IMPORTS                                         #
+#IMPORTS
+import turtle
+from turtle_chat_widgets import Button
+from turtle_chat_widgets import TextInput
+from turtle_chat_client import Client
+
 #####################################################################################
 #import the turtle module
 #import the Client class from the turtle_chat_client module
@@ -37,7 +42,26 @@
 #   \r to your string.  Test it out at the Python shell for practice
 #####################################################################################
 #####################################################################################
-
+class TextBox(TextInput):
+    def draw_box(self):
+        self.box = turtle.clone()
+        self.box.hideturtle()
+        self.box.goto(self.width,self.height)
+        self.box.pendown()
+        self.box.goto(self.width-300,self.height)
+        self.box.goto(self.width-300,self.height-150)
+        self.box.goto(self.width,self.height-150)
+        self.box.goto(self.width,self.height)
+        
+    def write_msg(self):
+        self.writer.goto(self.width - 295, self.height - 10)
+        self.writer.write(self.new_msg)
+        
+        
+        
+      
+        
+    
 #####################################################################################
 #                                  SendButton                                       #
 #####################################################################################
@@ -56,7 +80,6 @@
 #####################################################################################
 #####################################################################################
 
-
 ##################################################################
 #                             View                               #
 ##################################################################
@@ -72,6 +95,7 @@ class View:
     _SCREEN_HEIGHT=600
     _LINE_SPACING=round(_SCREEN_HEIGHT/2/(_MSG_LOG_LENGTH+1))
 
+
     def __init__(self,username='Me',partner_name='Partner'):
         '''
         :param username: the name of this chat user
@@ -82,7 +106,7 @@ class View:
         ###
 
         ###
-        #Make a new client object and store it in this instance of View
+        #Make a new Client object and store it in this instance of View
         #(i.e. self).  The name of the instance should be my_client
         ###
 
@@ -174,30 +198,29 @@ class View:
         You can get the messages you want from self.msg_queue
         '''
         pass
-
     def get_client(self):
-        return self.my_client
-##############################################################
-##############################################################
+            return self.my_client
+    ##############################################################
+    ##############################################################
 
 
-#########################################################
-#Leave the code below for now - you can play around with#
-#it once you have a working view, trying to run you chat#
-#view in different ways.                                #
-#########################################################
-if __name__ == '__main__':
-    my_view=View()
-    _WAIT_TIME=200 #Time between check for new message, ms
-    def check() :
-        #msg_in=my_view.my_client.receive()
-        msg_in=my_view.get_client().receive()
-        if not(msg_in is None):
-            if msg_in==Client._END_MSG:
-                print('End message received')
-                sys.exit()
-            else:
-                my_view.msg_received(msg_in)
-        turtle.ontimer(check,_WAIT_TIME) #Check recursively
-    check()
-    turtle.mainloop()
+    #########################################################
+    #Leave the code below for now - you can play around with#
+    #it once you have a working view, trying to run you chat#
+    #view in different ways.                                #
+    #########################################################
+    if __name__ == '__main__':
+        my_view=View()
+        _WAIT_TIME=200 #Time between check for new message, ms
+        def check() :
+            #msg_in=my_view.my_client.receive()
+            msg_in=my_view.get_client().receive()
+            if not(msg_in is None):
+                if msg_in==Client._END_MSG:
+                    print('End message received')
+                    sys.exit()
+                else:
+                    my_view.msg_received(msg_in)
+            turtle.ontimer(check,_WAIT_TIME) #Check recursively
+        check()
+        turtle.mainloop()
