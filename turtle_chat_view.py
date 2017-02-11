@@ -44,8 +44,10 @@ from turtle_chat_client import Client
 #####################################################################################
 class TextBox(TextInput):
     def draw_box(self):
+        turtle.hideturtle()
         self.box = turtle.clone()
         self.box.hideturtle()
+        self.box.penup()
         self.box.goto(self.width,self.height)
         self.box.pendown()
         self.box.goto(self.width-300,self.height)
@@ -54,8 +56,13 @@ class TextBox(TextInput):
         self.box.goto(self.width,self.height)
         
     def write_msg(self):
-        self.writer.goto(self.width - 295, self.height - 10)
-        self.writer.write(self.new_msg)
+        self.writer.goto(self.width - 290, self.height - 150)
+        self.writer.write(self.new_msg, font=("Arial", 16, "normal"))
+        if len(self.new_msg) == self.letters_per_line:
+            self.new_msg += "\r"
+            self.writer.stamp()
+            self.writer.clear(self.new_msg)
+        
         
         
         
