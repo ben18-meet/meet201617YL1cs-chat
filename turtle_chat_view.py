@@ -54,21 +54,21 @@ class TextBox(TextInput):
         self.box.goto(self.width-300,self.height-150)
         self.box.goto(self.width,self.height-150)
         self.box.goto(self.width,self.height)
-        
+
     def write_msg(self):
         self.writer.goto(self.width - 290, self.height - 150)
         self.writer.write(self.new_msg, font=("Arial", 16, "normal"))
         if len(self.new_msg) == self.letters_per_line:
             self.new_msg += "\r"
             self.writer.stamp()
-            self.writer.clear(self.new_msg)
-        
-        
-        
-        
-      
-        
-    
+            self.writer.clear()
+
+
+
+
+
+
+
 #####################################################################################
 #                                  SendButton                                       #
 #####################################################################################
@@ -86,6 +86,9 @@ class TextBox(TextInput):
 #      you send messages and update message displays.
 #####################################################################################
 #####################################################################################
+class SendButton(Button):
+    def __init__(self):
+        super(SendButton,self).__init__(view)
 
 ##################################################################
 #                             View                               #
@@ -96,6 +99,9 @@ class TextBox(TextInput):
 #Read the comments below for hints and directions.
 ##################################################################
 ##################################################################
+
+
+
 class View:
     _MSG_LOG_LENGTH=5 #Number of messages to retain in view
     _SCREEN_WIDTH=300
@@ -111,21 +117,21 @@ class View:
         ###
         #Store the username and partner_name into the instance.
         ###
-
+        self.username = username
+        self.partner_name = partner_name
         ###
         #Make a new Client object and store it in this instance of View
         #(i.e. self).  The name of the instance should be my_client
         ###
-
+        my_client = self.client
         ###
         #Set screen dimensions using turtle.setup
         #You can get help on this function, as with other turtle functions,
-        #by typing
-        #
-        #   import turtle
-        #   help(turtle.setup)
-        #
-        #at the Python shell.
+
+
+        turtle.setup(width = 200, height = 300, startx = None, starty = None)
+
+
         ###
 
         ###
@@ -142,7 +148,7 @@ class View:
         #You can use the clear() and write() methods to erase
         #and write messages for each
         ###
-
+        
         ###
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
@@ -168,7 +174,7 @@ class View:
     def get_msg(self):
         return self.textbox.get_msg()
 
-    
+
 
     def setup_listeners(self):
         '''
