@@ -234,18 +234,18 @@ class View:
     #it once you have a working view, trying to run you chat#
     #view in different ways.                                #
     #########################################################
-    if __name__ == '__main__':
-        user_view = View()  
-        _WAIT_TIME=200 #Time between check for new message, ms
-        def check() :
-            #msg_in=my_view.my_client.receive()
-            msg_in=user_view.get_client().receive()
-            if not(msg_in is None):
-                if msg_in==Client._END_MSG:
-                    print('End message received')
-                    sys.exit()
-                else:
-                    user_view.msg_received(msg_in)
-            turtle.ontimer(check,_WAIT_TIME) #Check recursively
-        check()
-        turtle.mainloop()
+if __name__ == '__main__':
+    user_view = View()  
+    _WAIT_TIME=200 #Time between check for new message, ms
+    def check() :
+        #msg_in=my_view.my_client.receive()
+        msg_in=user_view.get_client().receive()
+        if not(msg_in is None):
+            if msg_in==Client._END_MSG:
+                print('End message received')
+                sys.exit()
+            else:
+                user_view.msg_received(msg_in)
+        turtle.ontimer(check,_WAIT_TIME) #Check recursively
+    check()
+    turtle.mainloop()
