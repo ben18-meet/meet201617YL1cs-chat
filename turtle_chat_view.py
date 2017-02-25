@@ -87,10 +87,11 @@ class TextBox(TextInput):
 #####################################################################################
 #####################################################################################
 class SendButton(Button):
-    def __init__(self,view):
-        def fun(self):
-            self.client_msg.send()
-            self.display_msg()
+    def __init__(self,View):
+        super(SendButton,self).__init__(self.view)    
+    def fun(self):
+        self.client_msg.send()
+        self.display_msg()
 
 ##################################################################
 #                             View                               #
@@ -156,7 +157,7 @@ class View:
         #Store them inside of this instance
         ###
         box1 = TextBox()
-        send_btn = SendButton()
+        send_btn = SendButton(View)
         ###
         #Call your setup_listeners() function, if you have one,
         #and any other remaining setup functions you have invented.
