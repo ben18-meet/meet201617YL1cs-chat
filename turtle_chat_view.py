@@ -102,13 +102,13 @@ class SendButton(Button):
 ##################################################################
 ##################################################################
 
-
+_MSG_LOG_LENGTH=5 #Number of messages to retain in view
+_SCREEN_WIDTH=300
+_SCREEN_HEIGHT=600
+_LINE_SPACING=round(_SCREEN_HEIGHT/2/(_MSG_LOG_LENGTH+1))
 
 class View:
-    _MSG_LOG_LENGTH=5 #Number of messages to retain in view
-    _SCREEN_WIDTH=300
-    _SCREEN_HEIGHT=600
-    _LINE_SPACING=round(_SCREEN_HEIGHT/2/(_MSG_LOG_LENGTH+1))
+    
 
 
     def __init__(self,username='Me',partner_name='Partner'):
@@ -156,11 +156,12 @@ class View:
         #Store them inside of this instance
         ###
         box1 = TextBox()
-        send_btn = Button()
+        send_btn = SendButton()
         ###
         #Call your setup_listeners() function, if you have one,
         #and any other remaining setup functions you have invented.
         ###
+        self.setup_listeners()
 
     def send_msg(self):
         '''
