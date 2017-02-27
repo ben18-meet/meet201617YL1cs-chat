@@ -90,7 +90,7 @@ class SendButton(Button):
     def __init__(self,view):
         self.view = view
     def fun(self):
-        self.client_msg.send()
+        self.view.my_client_msg.send()
         self.display_msg()
 
 ##################################################################
@@ -151,7 +151,7 @@ class View:
         #You can use the clear() and write() methods to erase
         #and write messages for each
         ###
-        self.client_msg = turtle.clone()
+        
         ###
         #Create a TextBox instance and a SendButton instance and
         #Store them inside of this instance
