@@ -126,7 +126,7 @@ class View:
         #Make a new Client object and store it in this instance of View
         #(i.e. self).  The name of the instance should be my_client
         ###
-        my_client = Client()
+        self.my_client = Client()
         ###
         #Set screen dimensions using turtle.setup
         #You can get help on this function, as with other turtle functions,
@@ -157,7 +157,7 @@ class View:
         #Store them inside of this instance
         ###
         box1 = TextBox()
-        send_btn = SendButton(self.view)
+        send_btn = SendButton(self)
         ###
         #Call your setup_listeners() function, if you have one,
         #and any other remaining setup functions you have invented.
@@ -197,7 +197,7 @@ class View:
         Then, it can call turtle.listen()
 
         '''
-        self.send_btn = Button(user_view)
+        self.send_btn = SendButton(self)
         turtle.onkeypress(self.send_btn.fun, "Return")
         turtle.listen()
 
