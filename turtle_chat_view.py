@@ -87,8 +87,7 @@ class TextBox(TextInput):
 #####################################################################################
 #####################################################################################
 class SendButton(Button):
-    def __init__(self):
-        super(SendButton).__init__(self,view)
+    def __init__(self,view):
         self.view = view
     def fun(self):
         self.client_msg.send()
@@ -131,7 +130,7 @@ class View:
         ###
         #Set screen dimensions using turtle.setup
         #You can get help on this function, as with other turtle functions,
-
+        
 
         turtle.setup(width = _SCREEN_WIDTH, height = _SCREEN_HEIGHT , startx = None, starty = None)
 
@@ -158,7 +157,7 @@ class View:
         #Store them inside of this instance
         ###
         box1 = TextBox()
-        send_btn = SendButton()
+        send_btn = SendButton(self.view)
         ###
         #Call your setup_listeners() function, if you have one,
         #and any other remaining setup functions you have invented.
@@ -198,7 +197,7 @@ class View:
         Then, it can call turtle.listen()
 
         '''
-        self.send_btn = Button()
+        self.send_btn = Button(user_view)
         turtle.onkeypress(self.send_btn.fun, "Return")
         turtle.listen()
 
