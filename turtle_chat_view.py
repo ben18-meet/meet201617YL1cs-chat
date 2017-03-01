@@ -50,15 +50,15 @@ class TextBox(TextInput):
         self.box.penup()
         self.box.goto(self.width,self.height)
         self.box.pendown()
-        self.box.goto(self.width-300,self.height)
-        self.box.goto(self.width-300,self.height-100)
+        self.box.goto(self.width-400,self.height)
+        self.box.goto(self.width-400,self.height-100)
         self.box.goto(self.width,self.height-100)
         self.box.goto(self.width,self.height)
 
     def write_msg(self):
-        self.writer.goto(self.width - 290, self.height - 90)
+        self.writer.goto(self.width - 390, self.height-50)
         self.writer.clear()
-        self.writer.write(self.new_msg, font=("Arial", 16, "normal"))
+        self.writer.write(self.new_msg, font=("Arial", 16, "italic"))
         ###if len(self.new_msg) == self.letters_per_line:
         ### self.new_msg += "\r"
  
@@ -96,16 +96,15 @@ class SendButton(Button):
             self.turtle=my_turtle
 
         self.turtle.speed(0)
-        self.turtle.hideturtle()
         self.turtle.penup()
         self.turtle.goto(pos)
-
         if shape is None:
             self.turtle.shape('square')
-            self.turtle.fillcolor('cyan')
-            self.turtle.shapesize(2,10)
-            self.turtle.goto(20,-100)
-            self.turtle.write('Send')
+            self.turtle.fillcolor('white')
+            self.turtle.shapesize(3,10)
+            self.turtle.goto(0,-100)
+            self.turtle.penup()
+            
                        
         else:
             turtle.addshape(shape)
@@ -138,7 +137,7 @@ class View:
     
 
 
-    def __init__(self,username="You",partner_name="Parter"):
+    def __init__(self,username=input("What's your name? "),partner_name= input("Who would you like to chat with? ")):
         '''
         :param username: the name of this chat user
         :param partner_name: the name of the user you are chatting with
@@ -157,9 +156,9 @@ class View:
         #Set screen dimensions using turtle.setup
         #You can get help on this function, as with other turtle functions,
         
-
-        turtle.setup(width = _SCREEN_WIDTH, height = _SCREEN_HEIGHT , startx = None, starty = None)
-
+        screen = turtle.Screen()
+        screen.setup(width = _SCREEN_WIDTH, height = _SCREEN_HEIGHT , startx = None, starty = None)
+        screen.bgcolor("cyan")
         
         ###
 
@@ -251,9 +250,9 @@ class View:
         self.show_msg = self.msg_queue[-1]
         self.display_turtle.ht()
         self.display_turtle.penup()
-        self.display_turtle.goto(0,200)
+        self.display_turtle.goto(-50,200)
         self.display_turtle.clear()
-        self.display_turtle.write(self.show_msg, font=("Arial", 16, "normal"))
+        self.display_turtle.write(self.show_msg, font=("Arial", 16, "italic"))
     def get_client(self):
             return self.my_client
     ##############################################################
