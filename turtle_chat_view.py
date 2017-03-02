@@ -92,18 +92,24 @@ class SendButton(Button):
         if my_turtle is None :
             #If no turtle given, create new one
             self.turtle=turtle.clone()
+            self.ben_turtle = turtle.clone()
+
+            
         else:
             self.turtle=my_turtle
-
+    
         self.turtle.speed(0)
         self.turtle.penup()
         self.turtle.goto(pos)
+        
         if shape is None:
             self.turtle.shape('square')
-            self.turtle.fillcolor('white')
             self.turtle.shapesize(3,10)
+            self.turtle.fillcolor("white")
             self.turtle.goto(0,-100)
-            self.turtle.penup()
+            self.turtle.pendown()
+            
+            
             
                        
         else:
@@ -113,6 +119,12 @@ class SendButton(Button):
         self.turtle.onclick(self.fun) #Link listener to button function
         turtle.listen() #Start listener
         self.view = view
+        self.ben_turtle.ht()
+        self.ben_turtle.penup()
+        self.ben_turtle.goto(-37,-115)
+        self.ben_turtle.pendown()
+        self.ben_turtle.pencolor("black")
+        self.ben_turtle.write("SEND",font = ("Arial",18,"bold"))
         
     def fun(self,x=0,y=-100):
         self.view.send_msg()
